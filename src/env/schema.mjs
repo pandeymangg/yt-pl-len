@@ -7,6 +7,7 @@ import { z } from "zod";
  */
 export const serverSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]),
+  YOUTUBE_API_KEY: z.string(),
 });
 
 /**
@@ -16,6 +17,7 @@ export const serverSchema = z.object({
  */
 export const serverEnv = {
   NODE_ENV: process.env.NODE_ENV,
+  YOUTUBE_API_KEY: process.env.YOUTUBE_API_KEY,
 };
 
 /**
