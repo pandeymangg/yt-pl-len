@@ -54,7 +54,9 @@ const Home: NextPage = () => {
               ))}
             </div>
 
-            <button type="submit">Submit</button>
+            <button type="submit" className="border border-teal-700">
+              Submit
+            </button>
 
             <div>
               {isLoading && <div>Loading...</div>}
