@@ -3,11 +3,7 @@ import Head from "next/head";
 import { useState } from "react";
 import type { FormEvent } from "react";
 import clsx from "clsx";
-
 import { api } from "../utils/api";
-import useLocalStorage from "../hooks/useLocalStorage";
-import { TTheme } from "../types/utils.types";
-import { useThemeDetector } from "../hooks/useThemeDetector";
 import { useTheme } from "../hooks/useTheme";
 
 const Home: NextPage = () => {
@@ -21,7 +17,7 @@ const Home: NextPage = () => {
   const [playlistLink, setPlaylistLink] = useState("");
   const [playbackSpeed, setPlaybackSpeed] = useState(1);
 
-  const { theme, setTheme } = useTheme();
+  const { setTheme } = useTheme();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
