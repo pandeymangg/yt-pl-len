@@ -3,13 +3,10 @@ import { google } from "googleapis";
 export const calculateDuration = async (
   {
     playlistId,
-    playbackSpeed,
   }: {
     playlistId: string;
-    playbackSpeed?: number;
   } = {
     playlistId: "",
-    playbackSpeed: 1,
   }
 ) => {
   const api_key = process.env.YOUTUBE_API_KEY;
@@ -91,10 +88,8 @@ export const calculateDuration = async (
     }
   }
 
-  const speed = playbackSpeed || 1;
-
-  let minutes = Math.floor(totalSeconds / speed / 60);
-  const seconds = Math.floor((totalSeconds / speed) % 60);
+  let minutes = Math.floor(totalSeconds / 60);
+  const seconds = Math.floor(totalSeconds % 60);
 
   const hours = Math.floor(minutes / 60);
   minutes = Math.floor(minutes % 60);
@@ -106,7 +101,7 @@ export const calculateDuration = async (
       title: title,
       description: description,
       channelTitle: channelTitle,
-      duration: Math.floor(totalSeconds / speed),
+      duration: Math.floor(totalSeconds),
       hours: hours,
       minutes: minutes,
       seconds: seconds,
