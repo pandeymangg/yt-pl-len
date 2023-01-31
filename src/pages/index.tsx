@@ -5,6 +5,10 @@ import type { FormEvent } from "react";
 import clsx from "clsx";
 
 import { api } from "../utils/api";
+import useLocalStorage from "../hooks/useLocalStorage";
+import { TTheme } from "../types/utils.types";
+import { useThemeDetector } from "../hooks/useThemeDetector";
+import { useTheme } from "../hooks/useTheme";
 
 const Home: NextPage = () => {
   const {
@@ -13,8 +17,11 @@ const Home: NextPage = () => {
     isLoading,
     isSuccess,
   } = api.calculate.calculate.useMutation();
+
   const [playlistLink, setPlaylistLink] = useState("");
   const [playbackSpeed, setPlaybackSpeed] = useState(1);
+
+  const { theme, setTheme } = useTheme();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -29,7 +36,14 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center">
-        <div className="border border-red-600 p-4">
+        <div className="border border-red-600 p-4 dark:bg-slate-500">
+          <button
+            onClick={() =>
+              setTheme((prev) => (prev === "dark" ? "light" : "dark"))
+            }
+          >
+            Change Theme
+          </button>
           <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
             <input
               type="text"
