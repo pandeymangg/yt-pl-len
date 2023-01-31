@@ -44,6 +44,7 @@ const Home: NextPage = () => {
             onClick={() =>
               setTheme((prev) => (prev === "dark" ? "light" : "dark"))
             }
+            className="mb-2 border border-teal-700 text-black dark:text-white"
           >
             Change Theme
           </button>
