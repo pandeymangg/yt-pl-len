@@ -22,8 +22,6 @@ const CalculateForm: React.FC<IProps> = ({
           value={playlistLink}
           onChange={(e) => setPlaylistLink(e.target.value)}
         />
-        {/* <span className="input__label">PlayList Link / Id</span> */}
-
         <button
           type="submit"
           className="h-11 w-32 rounded-lg bg-[#ff0000]  font-medium text-white"

@@ -3,8 +3,8 @@ import Head from "next/head";
 import { useMemo, useState } from "react";
 import type { FormEvent } from "react";
 import { api } from "../utils/api";
-import PlaybackInfo from "../components/PlaybackInfo";
 import CalculateForm from "components/CalculateForm";
+import PlaylistInfo from "components/PlaylistInfo";
 
 const Home: NextPage = () => {
   const {
@@ -12,6 +12,7 @@ const Home: NextPage = () => {
     data,
     isLoading,
     isSuccess,
+    isError,
   } = api.calculate.calculate.useMutation();
 
   const [playlistLink, setPlaylistLink] = useState("");
@@ -44,20 +45,14 @@ const Home: NextPage = () => {
             onSubmit={handleSubmit}
           />
 
-          <div>
-            {isLoading && <div>Loading...</div>}
-            {isSuccess && (
-              <div className="flex flex-col">
-                {[0.5, 0.75, 1, 1.25, 1.5, 2].map((speed) => (
-                  <PlaybackInfo
-                    key={speed}
-                    duration={data.data.duration}
-                    speed={speed}
-                  />
-                ))}
-              </div>
-            )}
-          </div>
+          <PlaylistInfo
+            isError={isError}
+            isLoading={isLoading}
+            isSuccess={isSuccess}
+            duration={data?.data?.duration ?? 0}
+            numberOfVideos={data?.data?.numberOfVideos ?? 0}
+            title={data?.data?.title ?? ""}
+          />
         </div>
       </div>
     </>
