@@ -10,11 +10,14 @@ const lato = Lato({
 });
 
 import "../styles/globals.css";
+import Layout from "components/Layout";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <main className={lato.className}>
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </main>
   );
 };
