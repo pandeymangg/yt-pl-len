@@ -5,8 +5,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="bg-bgLight dark:bg-bgDark">
       <Navbar />
-
-      <main>{children}</main>
+      <main className="mx-auto w-full max-w-4xl">{children}</main>
     </div>
   );
 };

@@ -16,7 +16,7 @@ const Navbar = () => {
         "z-50 mx-auto h-20 w-full"
       )}
     >
-      <div className="flex w-[95%] items-center justify-between">
+      <div className="flex w-full items-center justify-between">
         <div className="flex h-full items-center">
           <Link href="/">
             <div className="flex items-center gap-3 text-xl font-bold md:text-[2rem]">
