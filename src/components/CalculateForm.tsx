@@ -24,7 +24,7 @@ const CalculateForm: React.FC<IProps> = ({
         />
         <button
           type="submit"
-          className="h-11 w-32 rounded-lg bg-[#ff0000]  font-medium text-white"
+          className="h-11 w-32 cursor-pointer rounded-lg bg-[#ff0000] font-medium text-white  hover:bg-red-600 active:scale-95"
           disabled={!playlistLink}
         >
           <span>Calculate</span>

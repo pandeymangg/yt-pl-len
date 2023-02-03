@@ -11,13 +11,16 @@ const lato = Lato({
 
 import "../styles/globals.css";
 import Layout from "components/Layout";
+import { ThemeProvider } from "context/ThemeContext";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <main className={lato.className}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <ThemeProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ThemeProvider>
     </main>
   );
 };

@@ -1,8 +1,8 @@
 import { MdLightMode, MdNightlightRound } from "react-icons/md";
 import Link from "next/link";
-import { useTheme } from "../hooks/useTheme";
 import clsx from "clsx";
 import Image from "next/image";
+import { useTheme } from "context/ThemeContext";
 
 // TODO: Add a theme toggle correctly that renders the correct icon
 
@@ -13,7 +13,8 @@ const Navbar = () => {
     <nav
       className={clsx(
         "sticky top-0 flex max-w-4xl items-center justify-center",
-        "z-50 mx-auto h-20 w-full"
+        "z-50 mx-auto h-20 w-full",
+        "px-4"
       )}
     >
       <div className="flex w-full items-center justify-between">
