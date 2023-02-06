@@ -1,4 +1,5 @@
 import { google } from "googleapis";
+import { IThumbailsResponse } from "types/utils.types";
 
 export const calculateDuration = async (
   {
@@ -26,18 +27,21 @@ export const calculateDuration = async (
 
   const youtube = google.youtube("v3");
 
-  const testResponse = await youtube.playlists.list({
+  const playlistInfo = await youtube.playlists.list({
     key: api_key,
     part: ["snippet"],
     id: [playlistId],
   });
 
-  title = testResponse?.data?.items?.[0]?.snippet?.title ?? "";
-  channelTitle = testResponse?.data?.items?.[0]?.snippet?.channelTitle ?? "";
-  description = testResponse?.data?.items?.[0]?.snippet?.description ?? "";
+  title = playlistInfo?.data?.items?.[0]?.snippet?.title ?? "";
+  channelTitle = playlistInfo?.data?.items?.[0]?.snippet?.channelTitle ?? "";
+  description = playlistInfo?.data?.items?.[0]?.snippet?.description ?? "";
+
+  const thumbs: IThumbailsResponse =
+    playlistInfo?.data?.items?.[0]?.snippet?.thumbnails ?? {};
 
   while (true) {
-    const plResponse = await youtube.playlistItems.list({
+    const playlistItems = await youtube.playlistItems.list({
       key: api_key,
       part: ["contentDetails", "snippet"],
       playlistId,
@@ -47,19 +51,19 @@ export const calculateDuration = async (
 
     videoIds = [];
 
-    plResponse?.data?.items?.forEach((item) =>
+    playlistItems?.data?.items?.forEach((item) =>
       videoIds.push(item?.contentDetails?.videoId ?? "")
     );
 
     length += videoIds.length;
 
-    const vidResponse = await youtube.videos.list({
+    const playlistVideos = await youtube.videos.list({
       key: api_key,
       part: ["contentDetails"],
       id: videoIds,
     });
 
-    vidResponse?.data?.items?.forEach((item) => {
+    playlistVideos?.data?.items?.forEach((item) => {
       const hour =
         item?.contentDetails?.duration
           ?.match(hourRegex)?.[0]
@@ -81,7 +85,7 @@ export const calculateDuration = async (
       totalSeconds += durationSeconds;
     });
 
-    nextPageToken = plResponse.data.nextPageToken ?? "";
+    nextPageToken = playlistItems.data.nextPageToken ?? "";
 
     if (!nextPageToken) {
       break;
@@ -105,6 +109,7 @@ export const calculateDuration = async (
       hours: hours,
       minutes: minutes,
       seconds: seconds,
+      thumbs,
     },
   };
 };

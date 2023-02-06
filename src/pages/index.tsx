@@ -55,6 +55,7 @@ const Home: NextPage = () => {
             duration={data?.data?.duration ?? 0}
             numberOfVideos={data?.data?.numberOfVideos ?? 0}
             title={data?.data?.title ?? ""}
+            thumbs={data?.data?.thumbs}
           />
         </div>
       </div>

@@ -1,6 +1,8 @@
 import React from "react";
 import PlaybackInfo from "./PlaybackInfo";
 import { useTheme } from "context/ThemeContext";
+import type { IThumbailsResponse } from "types/utils.types";
+import Image from "next/image";
 
 interface IPlaylistInfoProps {
   duration: number;
@@ -9,11 +11,19 @@ interface IPlaylistInfoProps {
   isError: boolean;
   numberOfVideos: number;
   title: string;
+  thumbs?: IThumbailsResponse;
 }
 
 const PlaylistInfo = (props: IPlaylistInfoProps) => {
-  const { duration, isError, isLoading, isSuccess, numberOfVideos, title } =
-    props;
+  const {
+    duration,
+    isError,
+    isLoading,
+    isSuccess,
+    numberOfVideos,
+    title,
+    thumbs,
+  } = props;
 
   const { theme } = useTheme();
   const isDarkTheme = theme === "dark";
@@ -44,10 +54,25 @@ const PlaylistInfo = (props: IPlaylistInfoProps) => {
           <div className="text-lg font-medium text-gray-900 dark:text-gray-100">
             {numberOfVideos} videos in total
           </div>
-          <div className="flex flex-col gap-2">
-            {[0.5, 0.75, 1, 1.25, 1.5, 2].map((speed) => (
-              <PlaybackInfo key={speed} duration={duration} speed={speed} />
-            ))}
+          <div className="flex w-full flex-col justify-between gap-4 md:flex-row md:items-center md:gap-12">
+            <div className="flex flex-col gap-2">
+              {[0.5, 0.75, 1, 1.25, 1.5, 2].map((speed) => (
+                <PlaybackInfo key={speed} duration={duration} speed={speed} />
+              ))}
+            </div>
+
+            <div className="relative aspect-video w-full flex-1 overflow-hidden rounded-lg">
+              {thumbs?.high?.url ? (
+                <Image
+                  src={thumbs?.high?.url}
+                  fill
+                  style={{
+                    objectFit: "cover",
+                  }}
+                  alt="Platlist Thumbnail"
+                />
+              ) : null}
+            </div>
           </div>
         </div>
       );
