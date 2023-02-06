@@ -13,7 +13,7 @@ const PlaybackInfo = ({ speed, duration }: IPlatybackInfoProps) => {
   });
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 text-sm sm:text-base">
       <p className="text-black dark:text-white">Speed at {speed}x: </p>
       <p className="text-black dark:text-white">
         {hours} hours {minutes} minutes {seconds} seconds

@@ -37,16 +37,18 @@ const PlaylistInfo = (props: IPlaylistInfoProps) => {
 
     if (isSuccess) {
       return (
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-2">
           <div className="text-2xl font-bold text-gray-900 dark:text-gray-100">
             {title}
           </div>
           <div className="text-lg font-medium text-gray-900 dark:text-gray-100">
             {numberOfVideos} videos in total
           </div>
-          {[0.5, 0.75, 1, 1.25, 1.5, 2].map((speed) => (
-            <PlaybackInfo key={speed} duration={duration} speed={speed} />
-          ))}
+          <div className="flex flex-col gap-2">
+            {[0.5, 0.75, 1, 1.25, 1.5, 2].map((speed) => (
+              <PlaybackInfo key={speed} duration={duration} speed={speed} />
+            ))}
+          </div>
         </div>
       );
     }
