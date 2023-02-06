@@ -1,28 +1,15 @@
-# Create T3 App
+# YouTube Playlist Length Calculator
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+This is a web app that calculates the length of a YouTube playlist. This is helpful for anyone who wants to learn something from a youtube tutorial series or a course
+and wants to find out how much time will it take it finish.
 
-## What's next? How do I make an app with this?
+It also shows the length of a YouTube Playlist in different speeds.
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+## How Does It Work ?
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+You need to paste the link of the YouTube Playlist in the input box and hit the calculate button. If you can't find the link of the Playlist, it will also work with only the Playlist Id or the link of any video from that Playlist as well!.
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+## Build Instructions
 
-## Learn More
-
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
-
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
-
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
-
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+1. In the root directory, run `npm install`
+2. Run `npm run dev` to run the project locally on `localhost:3000`
